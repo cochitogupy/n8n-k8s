@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: n8n
+  template:
+    metadata:
+      labels:
+        app: n8n
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: n8n
+        image: n8nio/n8n
+        ports:
+        - containerPort: 5678
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        env:
+        - name: N8N_BASIC_AUTH_ACTIVE
+          value: "true"
+        - name: N8N_BASIC_AUTH_USER
+          value: admin
+        - name: N8N_BASIC_AUTH_PASSWORD
+          value: admin
+        - name: MONGO_HOST
+          value: mongo-service
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USERNAME
+          value: root
+        - name: MONGO_PASSWORD
+          value: example
+        - name: MONGO_DB
+          value: n8n_workflow_data
+        volumeMounts:
+        - name: n8n-storage
+          mountPath: /home/node/.n8n
+      volumes:
+      - name: n8n-storage
+        emptyDir: {}
