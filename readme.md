@@ -71,3 +71,20 @@ As credenciais definidas no `n8n-deployment.yaml` são:
 Usuário: admin
 Senha:   admin
 ```
+
+```
+kubectl apply -f .\mongo\mongo-deployment.yaml
+kubectl apply -f .\mongo\mongo-service.yaml
+
+kubectl apply -f .\postgres\postgres-deployment.yaml
+kubectl apply -f .\postgres\postgres-service.yaml
+
+kubectl apply -f .\n8n\n8n-deployment.yaml
+kubectl apply -f .\n8n\n8n-service.yaml
+```
+
+```
+kubectl rollout restart deployment/n8n
+```
+
+http://localhost:30078
