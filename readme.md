@@ -63,6 +63,13 @@ Exemplos:
 
 ---
 
+### Habilitar conexão para PG admin
+
+```
+kubectl port-forward svc/postgres-service 5432:5432
+```
+
+
 ## ✅ 5. Autenticação
 
 As credenciais definidas no `n8n-deployment.yaml` são:
