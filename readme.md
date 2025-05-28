@@ -74,10 +74,39 @@ kubectl port-forward svc/postgres-service 5432:5432
 
 As credenciais definidas no `n8n-deployment.yaml` são:
 
+
+#### Registrar Credencial APi Key N8N API:
+✅ Troque localhost por o nome DNS do serviço interno do Kubernetes
+Por exemplo, se o Service do seu n8n está assim:
+
+yaml
+```
+metadata:
+  name: n8n-service
+```
+
+E ele está no namespace padrão (default), use:
+
+pgsql
+```
+http://n8n-service.default.svc.cluster.local:5678/api/v1
+```
+
+Então o campo Base URL na sua credencial do tipo n8n API deve ficar assim:
+
+pgsql
+```
+http://n8n-service.default.svc.cluster.local:5678/api/v1
+```
+
+
+
 ```
 Usuário: admin
 Senha:   admin
 ```
+
+#### Reiniciar Containers com alterações
 
 ```
 kubectl apply -f .\mongo\mongo-deployment.yaml

@@ -23,12 +23,12 @@ spec:
           runAsUser: 1000
           runAsGroup: 1000
         env:
-        - name: N8N_BASIC_AUTH_ACTIVE
+        - name: N8N_API_KEY
+          value: "meu-token-supersecreto"
+        - name: N8N_ENCRYPTION_KEY
+          value: "minha-chave-super-secreta-de-32-ou-mais-caracteres-1234"
+        - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
           value: "true"
-        - name: N8N_BASIC_AUTH_USER
-          value: admin
-        - name: N8N_BASIC_AUTH_PASSWORD
-          value: admin
         - name: DB_TYPE
           value: postgresdb
         - name: DB_POSTGRESDB_HOST
